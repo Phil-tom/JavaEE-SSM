@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pojo.UserForm;
 import service.UserService;
 
@@ -72,13 +73,30 @@ public class UserController {
 //        }
 //    }
 
+//    @RequestMapping("/register")
+//    /**
+//     * 通过HttpServletRequest接受请求参数
+//     */
+//    public String register(HttpServletRequest request, Model model) {
+//        String uname = request.getParameter("uname");
+//        String upass = request.getParameter("upass");
+//        if ("zhangsan".equals(uname)
+//                && "123456".equals(upass)) {
+//            logger.info("成功");
+//            return "login"; //注册成功，跳转到login.jsp
+//        } else {
+//            logger.info("失败");
+//            //在register.jsp页面上可以使用EL表达式取出model的uname
+//            model.addAttribute("uname", uname);
+//            return "register";//返回register.jsp
+//        }
+//    }
+
     @RequestMapping("/register")
     /**
-     * 通过HttpServletRequest接受请求参数
+     * 通过@RequestParam接收请求参数
      */
-    public String register(HttpServletRequest request, Model model) {
-        String uname = request.getParameter("uname");
-        String upass = request.getParameter("upass");
+    public String register(@RequestParam String uname, @RequestParam String upass, Model model) {
         if ("zhangsan".equals(uname)
                 && "123456".equals(upass)) {
             logger.info("成功");
