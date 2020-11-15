@@ -36,22 +36,39 @@ public class UserController {
             return "login";
         }
     }
+//    /**
+//     * 处理注册
+//     * 使用UserForm对象（实体Bean）user接收注册页面接受的请求参数
+//     */
+//    @RequestMapping("/register")
+//    public String register(UserForm user, Model model) {
+//        if ("zhangsan".equals(user.getUname())
+//                && "123456".equals(user.getUpass())) {
+//        	logger.info("成功");
+//        	return "login";
+//        }else{
+//        	logger.info("失败");
+//        	//在register.jsp页面上可以使用EL表达式取出model的uname
+//        	model.addAttribute("uname",user.getUname());
+//        	return "register";
+//		}
+//    }
 
-    /**
-     * 处理注册
-     * 使用UserForm对象（实体Bean）user接收注册页面接受的请求参数
-     */
     @RequestMapping("/register")
-    public String register(UserForm user, Model model) {
-        if ("zhangsan".equals(user.getUname())
-                && "123456".equals(user.getUpass())) {
-        	logger.info("成功");
-        	return "login";
-        }else{
-        	logger.info("失败");
-        	//在register.jsp页面上可以使用EL表达式取出model的uname
-        	model.addAttribute("uname",user.getUname());
-        	return "register";
-		}
+    /**
+     * 通过形参接受请求参数，形参名称与请求参数名称完全相同！
+     */
+    public String register(String uname,String upass, Model model) {
+        if ("zhangsan".equals(uname)
+                && "123456".equals(upass)) {
+            logger.info("成功");
+            return "login"; //注册成功，跳转到login.jsp
+        } else {
+            logger.info("失败");
+            //在register.jsp页面上可以使用EL表达式取出model的uname
+            model.addAttribute("uname", uname);
+            return "register";//返回register.jsp
+        }
     }
+
 }
