@@ -92,19 +92,36 @@ public class UserController {
 //        }
 //    }
 
+//    @RequestMapping("/register")
+//    /**
+//     * 通过@RequestParam接收请求参数
+//     */
+//    public String register(@RequestParam String uname, @RequestParam String upass, Model model) {
+//        if ("zhangsan".equals(uname)
+//                && "123456".equals(upass)) {
+//            logger.info("成功");
+//            return "login"; //注册成功，跳转到login.jsp
+//        } else {
+//            logger.info("失败");
+//            //在register.jsp页面上可以使用EL表达式取出model的uname
+//            model.addAttribute("uname", uname);
+//            return "register";//返回register.jsp
+//        }
+//    }
+
     @RequestMapping("/register")
     /**
-     * 通过@RequestParam接收请求参数
+     * 通过@ModelAttribute接受请求参数
      */
-    public String register(@RequestParam String uname, @RequestParam String upass, Model model) {
-        if ("zhangsan".equals(uname)
-                && "123456".equals(upass)) {
+    public String register(@ModelAttribute("user") UserForm user) {
+        if ("zhangsan".equals(user.getUname())
+                && "123456".equals(user.getUpass())) {
             logger.info("成功");
             return "login"; //注册成功，跳转到login.jsp
         } else {
             logger.info("失败");
             //在register.jsp页面上可以使用EL表达式取出model的uname
-            model.addAttribute("uname", uname);
+            //使用@ModelAttribute("user")与model.addAttribute("user",user)的功能相同
             return "register";//返回register.jsp
         }
     }

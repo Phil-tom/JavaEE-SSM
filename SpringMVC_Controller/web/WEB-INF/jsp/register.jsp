@@ -52,7 +52,8 @@
 			<tr>
 				<td>姓名：</td>
 				<td>
-					<input class="textSize" type="text" name="uname" value="${uname }"/>
+					<input class="textSize" type="text" name="uname" value="${user.uname }"/>
+<%--					<input class="textSize" type="text" name="uname" value="${uname }"/>--%>
 				</td>
 			</tr>
 			
