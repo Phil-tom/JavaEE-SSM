@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -54,11 +55,30 @@ public class UserController {
 //		}
 //    }
 
+//    @RequestMapping("/register")
+//    /**
+//     * 通过形参接受请求参数，形参名称与请求参数名称完全相同！
+//     */
+//    public String register(String uname,String upass, Model model) {
+//        if ("zhangsan".equals(uname)
+//                && "123456".equals(upass)) {
+//            logger.info("成功");
+//            return "login"; //注册成功，跳转到login.jsp
+//        } else {
+//            logger.info("失败");
+//            //在register.jsp页面上可以使用EL表达式取出model的uname
+//            model.addAttribute("uname", uname);
+//            return "register";//返回register.jsp
+//        }
+//    }
+
     @RequestMapping("/register")
     /**
-     * 通过形参接受请求参数，形参名称与请求参数名称完全相同！
+     * 通过HttpServletRequest接受请求参数
      */
-    public String register(String uname,String upass, Model model) {
+    public String register(HttpServletRequest request, Model model) {
+        String uname = request.getParameter("uname");
+        String upass = request.getParameter("upass");
         if ("zhangsan".equals(uname)
                 && "123456".equals(upass)) {
             logger.info("成功");
